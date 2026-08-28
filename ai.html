@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="鍾皓軒｜AI、資料科學與行銷策略企業顧問。提供 AI 導入策略、私有知識庫、RPA 自動化、企業內訓與成長行銷方案。">
+<title>鍾皓軒｜AI × 數據 × 成長策略顧問</title>
+<link rel="canonical" href="https://tmrmds-oliver.github.io/vibe-coding-web/code_artifact.html">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="鍾皓軒｜AI × 數據 × 成長策略顧問">
+<meta property="og:title" content="鍾皓軒｜AI × 數據 × 成長策略顧問">
+<meta property="og:description" content="以企業聽得懂、團隊學得會、現場用得上的方法，協助組織將 AI、資料科學與行銷策略真正導入營運。">
+<meta property="og:url" content="https://tmrmds-oliver.github.io/vibe-coding-web/code_artifact.html">
+<meta property="og:image" content="https://tmrmds-oliver.github.io/vibe-coding-web/ChatGPT%20Image%202026%E5%B9%B48%E6%9C%8828%E6%97%A5%20%E4%B8%8A%E5%8D%8810_27_57.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        ink: '#132B27',
+        inkDark: '#0C1C19',
+        signal: '#E9795B',
+        ocean: '#F5D68E',
+        insight: '#C98835',
+        mist: '#E9F0EC',
+        paper: '#F7F3EA',
+        cardBg: '#FFFDF8'
+      },
+      fontFamily: {
+        sans: ['Noto Sans TC', 'Microsoft JhengHei', 'sans-serif']
+      }
+    }
+  }
+}
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { background-color: #F7F3EA; color: #132B27; font-family: 'Noto Sans TC', sans-serif; }
+  
+  .grid-bg {
+    background-image: linear-gradient(rgba(245, 214, 142, 0.12) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(245, 214, 142, 0.12) 1px, transparent 1px);
+    background-size: 36px 36px;
+  }
+  
+  .glow {
+    box-shadow: 0 0 0 1px rgba(245, 214, 142, 0.25), 0 20px 60px rgba(19, 43, 39, 0.35);
+  }
+
+  .glow-hover:hover {
+    box-shadow: 0 10px 30px rgba(233, 121, 91, 0.25);
+  }
+
+  /* Tree hierarchy styling */
+  .tree li { position: relative; padding-left: 1.5rem; }
+  .tree li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.9rem;
+    width: 1rem;
+    height: 1px;
+    background: #C9BFAE;
+  }
+  .tree li::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 1px;
+    background: #C9BFAE;
+  }
+  .tree li:last-child::after { height: 0.9rem; }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: #F7F3EA; }
+  ::-webkit-scrollbar-thumb { background: #C9BFAE; border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: #E9795B; }
+
+  /* Toast notification keyframes */
+  @keyframes slideIn {
+    from { transform: translateY(100%) scale(0.9); opacity: 0; }
+    to { transform: translateY(0) scale(1); opacity: 1; }
+  }
+  .toast-anim { animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+</style>
+</head>
+
+<body class="bg-paper text-ink antialiased selection:bg-signal selection:text-white flex flex-col min-h-screen">
+
+<header class="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-ink/95 text-white backdrop-blur-md transition-all duration-300">
+  <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+    <a href="#home" class="group flex items-center gap-3 font-bold text-lg tracking-tight">
+      <span class="grid h-10 w-10 place-items-center rounded-lg bg-signal text-ink font-black text-xl shadow-md transition-transform group-hover:scale-105">ZH</span>
+      <div class="flex flex-col">
+        <span class="leading-tight text-white group-hover:text-ocean transition-colors">鍾皓軒 Oliver</span>
+        <span class="text-xs font-normal text-slate-300">TMR 臺灣行銷研究</span>
+      </div>
+    </a>
+
+    <!-- Desktop Navigation Links -->
+    <div class="hidden gap-7 text-sm font-medium text-slate-200 md:flex md:items-center">
+      <a href="#about" class="hover:text-ocean transition-colors">關於我</a>
+      <a href="#services" class="hover:text-ocean transition-colors">AI 解決方案</a>
+      <a href="#calculator" class="hover:text-ocean transition-colors">效益試算</a>
+      <a href="#assessment" class="hover:text-ocean transition-colors">AI 成熟度檢測</a>
+      <a href="#work" class="hover:text-ocean transition-colors">實戰案例</a>
+      <a href="#portfolio" class="hover:text-ocean transition-colors">作品展示</a>
+      <a href="#insights" class="hover:text-ocean transition-colors">觀點文章</a>
+      <a href="#contact" class="rounded-full bg-signal px-5 py-2.5 font-bold text-ink shadow-sm hover:bg-ocean hover:text-ink transition-all hover:scale-105">預約諮詢</a>
+    </div>
+
+    <!-- Mobile Menu Toggle Button -->
+    <button id="mobile-menu-btn" aria-label="Toggle Menu" class="rounded-lg p-2 text-slate-300 hover:bg-white/10 hover:text-white md:hidden">
+      <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </nav>
+
+  <!-- Mobile Dropdown Navigation -->
+  <div id="mobile-menu" class="hidden border-t border-white/10 bg-ink px-6 py-6 space-y-4 md:hidden">
+    <a href="#about" class="block text-base text-slate-200 hover:text-ocean" onclick="toggleMobileMenu()">關於我</a>
+    <a href="#services" class="block text-base text-slate-200 hover:text-ocean" onclick="toggleMobileMenu()">AI 解決方案</a>
+    <a href="#calculator" class="block text-base text-slate-200 hover:text-ocean" onclick="toggleMobileMenu()">效益試算器</a>
+    <a href="#assessment" class="block text-base text-slate-200 hover:text-ocean" onclick="toggleMobileMenu()">AI 成熟度檢測</a>
+    <a href="#work" class="block text-base text-slate-200 hover:text-ocean" onclick="toggleMobileMenu()">實戰案例</a>
+    <a href="#portfolio" class="block text-base text-slate-200 hover:text-ocean" onclick="toggleMobileMenu()">作品展示</a>
+    <a href="#insights" class="block text-base text-slate-200 hover:text-ocean" onclick="toggleMobileMenu()">觀點文章</a>
+    <a href="#contact" class="inline-block w-full rounded-full bg-signal py-3 text-center font-bold text-ink hover:bg-ocean" onclick="toggleMobileMenu()">預約諮詢</a>
+  </div>
+</header>
+
+<main class="flex-grow pt-20">
+
+  <section id="home" class="grid-bg relative overflow-hidden bg-ink text-white pb-24 pt-28">
+    <div class="absolute -right-20 top-12 h-96 w-96 rounded-full bg-ocean/15 blur-3xl pointer-events-none"></div>
+    <div class="absolute -left-20 bottom-10 h-96 w-96 rounded-full bg-signal/15 blur-3xl pointer-events-none"></div>
+    
+    <div class="relative mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[1.2fr_.8fr] lg:items-center">
+      <div>
+        <div class="inline-flex items-center gap-2 rounded-full border border-ocean/30 bg-ocean/10 px-4 py-1.5 text-xs font-bold tracking-widest text-ocean mb-6">
+          <span class="inline-block h-2 w-2 rounded-full bg-signal animate-pulse"></span>
+          AI × DATA × GROWTH STRATEGY
+        </div>
+        <h1 class="text-4xl font-black leading-tight tracking-tight md:text-6xl lg:text-7xl">
+          讓 AI 與數據，<br>
+          <span class="text-ocean">成為可執行的成長力。</span>
+        </h1>
+        <p class="mt-6 max-w-2xl text-base leading-relaxed text-slate-300 md:text-lg">
+          我是鍾皓軒，臺灣行銷研究（TMR）創辦人。以「企業聽得懂、團隊學得會、現場用得上」的方法，協助組織將 AI、資料科學與行銷策略真正落地為獲利雙引擎。
+        </p>
+        
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href="#services" class="rounded-full bg-signal px-7 py-3.5 font-bold text-ink shadow-lg transition-all hover:bg-ocean hover:scale-105 focus:outline-none">
+            探索 AI 解決方案
+          </a>
+          <a href="#assessment" class="rounded-full border border-slate-500 bg-white/5 px-7 py-3.5 font-bold text-white transition-all hover:border-ocean hover:bg-white/10 hover:text-ocean">
+            免費進行 AI 成熟度檢測 →
+          </a>
+        </div>
+
+        <div class="mt-12 flex flex-wrap items-center gap-6 border-t border-white/10 pt-8 text-xs font-medium text-slate-400">
+          <div class="flex items-center gap-2">
+            <svg class="h-5 w-5 text-ocean" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            8+ 年資料科學與 AI 實戰
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="h-5 w-5 text-ocean" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            跨金融・製造・醫療・零售
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="h-5 w-5 text-ocean" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            10,000+ 企業與產學學員
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Interactive Card -->
+      <aside class="glow rounded-2xl border border-slate-700 bg-slate-900/80 p-6 md:p-8 backdrop-blur-md">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+          <div>
+            <p class="text-xs font-bold text-ocean tracking-wider">AI ADOPTION PATHWAY</p>
+            <h3 class="text-lg font-bold text-white mt-0.5">數據落地轉化 3 步驟</h3>
+          </div>
+          <span class="rounded bg-signal/20 px-2.5 py-1 text-xs font-bold text-signal">顧問模式</span>
+        </div>
+
+        <div class="mt-6 space-y-4">
+          <div class="group rounded-xl border border-white/5 bg-white/5 p-4 transition-all hover:border-ocean/40 hover:bg-white/10">
+            <div class="flex items-start gap-3">
+              <span class="grid h-8 w-8 flex-shrink-0 place-items-center rounded-lg bg-ocean/20 text-sm font-black text-ocean">01</span>
+              <div>
+                <h4 class="font-bold text-white group-hover:text-ocean transition-colors">釐清核心商業痛點</h4>
+                <p class="mt-1 text-xs leading-relaxed text-slate-400">精準找出 ROI 最高、最適合切入 AI 與自動化的高價值場景。</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="group rounded-xl border border-white/5 bg-white/5 p-4 transition-all hover:border-ocean/40 hover:bg-white/10">
+            <div class="flex items-start gap-3">
+              <span class="grid h-8 w-8 flex-shrink-0 place-items-center rounded-lg bg-ocean/20 text-sm font-black text-ocean">02</span>
+              <div>
+                <h4 class="font-bold text-white group-hover:text-ocean transition-colors">客製可落地架構方案</h4>
+                <p class="mt-1 text-xs leading-relaxed text-slate-400">串接知識庫(RAG)、RPA 與工作流程，確保數據隱私與安全性。</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="group rounded-xl border border-white/5 bg-white/5 p-4 transition-all hover:border-ocean/40 hover:bg-white/10">
+            <div class="flex items-start gap-3">
+              <span class="grid h-8 w-8 flex-shrink-0 place-items-center rounded-lg bg-ocean/20 text-sm font-black text-ocean">03</span>
+              <div>
+                <h4 class="font-bold text-white group-hover:text-ocean transition-colors">組織賦能與持續迭代</h4>
+                <p class="mt-1 text-xs leading-relaxed text-slate-400">培育內部 Prompt 專家與數據人才，讓 AI 成為企業日常 DNA。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <a href="#contact" class="mt-6 flex items-center justify-center gap-2 rounded-xl border border-signal/50 bg-signal/10 py-3 text-sm font-bold text-signal transition-all hover:bg-signal hover:text-ink">
+          <span>立即預約 30 分鐘諮詢</span>
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="border-y border-slate-200 bg-white py-8">
+    <div class="mx-auto max-w-7xl px-6">
+      <p class="text-center text-xs font-bold tracking-widest text-slate-500 uppercase mb-6">受邀授課與顧問合作機構</p>
+      <div class="flex flex-wrap items-center justify-center gap-8 md:gap-14 opacity-80 text-sm font-semibold text-slate-700">
+        <span class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-signal"></span>中華電信</span>
+        <span class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-signal"></span>長榮航空</span>
+        <span class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-signal"></span>資策會 (III)</span>
+        <span class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-signal"></span>工研院 (ITRI)</span>
+        <span class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-signal"></span>證券暨期貨市場發展基金會</span>
+        <span class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-signal"></span>國立臺灣科技大學</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="mx-auto max-w-7xl px-6 py-24">
+    <div class="grid gap-12 lg:grid-cols-[.85fr_1.15fr] lg:items-start">
+      <div>
+        <span class="text-xs font-bold tracking-widest text-insight uppercase">ABOUT ME / 關於我</span>
+        <h2 class="mt-3 text-3xl font-black leading-tight text-ink md:text-4xl">
+          不只導入 AI 工具，<br>更打造能持續升級的組織能力。
+        </h2>
+        <div class="mt-6 rounded-2xl bg-slate-100 p-6 border border-slate-200">
+          <p class="text-sm leading-relaxed text-slate-700">
+            「很多企業買了最貴的 AI 帳號，卻只拿來寫 Email。」我的使命是帶領團隊突破這個瓶頸，將資料與 AI 技術轉換為實際可量的營運績效與業務增長。
+          </p>
+        </div>
+      </div>
+
+      <div class="space-y-6">
+        <p class="text-base leading-relaxed text-slate-700">
+          我是鍾皓軒（Oliver），臺灣行銷研究（TMR）創辦人，長期協助大型企業、新創團隊與學術單位推動數據導向轉型。專長涵蓋 <b>生成式 AI 應用開發、私有知識庫 (RAG) 架構設計、Python 資料分析、行銷資料科學與自動化成長漏斗</b>。
+        </p>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div class="rounded-xl bg-cardBg border border-slate-200 p-5 shadow-sm hover:border-signal transition-colors">
+            <b class="text-3xl font-black text-insight">8+ 年</b>
+            <p class="mt-1 font-bold text-ink">產業教學與專案顧問實務</p>
+            <p class="mt-1 text-xs text-slate-600">協助超過百家企業從零建立數據決策習慣</p>
+          </div>
+          <div class="rounded-xl bg-cardBg border border-slate-200 p-5 shadow-sm hover:border-signal transition-colors">
+            <b class="text-3xl font-black text-insight">跨領域</b>
+            <p class="mt-1 font-bold text-ink">多場域導入經驗</p>
+            <p class="mt-1 text-xs text-slate-600">深耕金融風控、製造營運、醫療管理與文教</p>
+          </div>
+        </div>
+
+        <p class="text-sm leading-relaxed text-slate-600">
+          曾於中華電信、長榮航空、資策會、工研院、證基會及多家金控機構擔任 AI 專家與數據課程講師；同時在國立臺灣科技大學、臺北市立大學等校教授行銷資料科學與市場趨勢分析。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="bg-ink py-24 text-white">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="max-w-3xl">
+        <span class="text-xs font-bold tracking-widest text-signal uppercase">AI SOLUTIONS / 6 大核心服務</span>
+        <h2 class="mt-3 text-3xl font-black md:text-5xl">從工具學會，到 AI 真正創造營運效益</h2>
+        <p class="mt-4 text-slate-300 leading-relaxed">
+          針對「有數據沒策略、有工具沒人會用、有概念無法落地」等企業痛點，提供一站式專業整合顧問方案。
+        </p>
+      </div>
+
+      <!-- Solutions Grid -->
+      <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <!-- Card 1 -->
+        <article class="group relative flex flex-col justify-between rounded-2xl border border-slate-700 bg-slate-900 p-6 transition-all hover:-translate-y-1 hover:border-ocean/60 hover:shadow-xl">
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-signal">01 / AI 知識庫</span>
+              <span class="rounded bg-ocean/20 px-2 py-0.5 text-xs text-ocean">RAG 技術</span>
+            </div>
+            <h3 class="mt-4 text-xl font-bold text-white group-hover:text-ocean transition-colors">Chatbot 與私有知識庫</h3>
+            <p class="mt-3 text-xs leading-relaxed text-slate-400">
+              整合企業內部 PDF、SOP、合約與產品手冊，打造零洩密風險的智慧問答與業務檢索助理。
+            </p>
+          </div>
+          <button onclick="openSolutionModal(0)" class="mt-6 flex items-center gap-1.5 text-xs font-bold text-ocean hover:underline">
+            <span>檢視導入細節與架構</span> →
+          </button>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="group relative flex flex-col justify-between rounded-2xl border border-slate-700 bg-slate-900 p-6 transition-all hover:-translate-y-1 hover:border-ocean/60 hover:shadow-xl">
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-signal">02 / 自動化流程</span>
+              <span class="rounded bg-ocean/20 px-2 py-0.5 text-xs text-ocean">RPA + LLM</span>
+            </div>
+            <h3 class="mt-4 text-xl font-bold text-white group-hover:text-ocean transition-colors">RPA 工作流程自動化</h3>
+            <p class="mt-3 text-xs leading-relaxed text-slate-400">
+              串接高重複性行政、財務對帳、自動生成跨部門報表，將高價值人力從繁瑣工作中釋放。
+            </p>
+          </div>
+          <button onclick="openSolutionModal(1)" class="mt-6 flex items-center gap-1.5 text-xs font-bold text-ocean hover:underline">
+            <span>檢視導入細節與架構</span> →
+          </button>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="group relative flex flex-col justify-between rounded-2xl border border-slate-700 bg-slate-900 p-6 transition-all hover:-translate-y-1 hover:border-ocean/60 hover:shadow-xl">
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-signal">03 / 數據決策</span>
+              <span class="rounded bg-ocean/20 px-2 py-0.5 text-xs text-ocean">Predictive Analytics</span>
+            </div>
+            <h3 class="mt-4 text-xl font-bold text-white group-hover:text-ocean transition-colors">數據分析與預測模型</h3>
+            <p class="mt-3 text-xs leading-relaxed text-slate-400">
+              建構顧客流失預測、銷量預測與 RFM 顧客價值分群模型，讓商業策略不再全憑經驗博弈。
+            </p>
+          </div>
+          <button onclick="openSolutionModal(2)" class="mt-6 flex items-center gap-1.5 text-xs font-bold text-ocean hover:underline">
+            <span>檢視導入細節與架構</span> →
+          </button>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="group relative flex flex-col justify-between rounded-2xl border border-slate-700 bg-slate-900 p-6 transition-all hover:-translate-y-1 hover:border-ocean/60 hover:shadow-xl">
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-signal">04 / 組織賦能</span>
+              <span class="rounded bg-ocean/20 px-2 py-0.5 text-xs text-ocean">Corporate Training</span>
+            </div>
+            <h3 class="mt-4 text-xl font-bold text-white group-hover:text-ocean transition-colors">企業 AI 實戰教育訓練</h3>
+            <p class="mt-3 text-xs leading-relaxed text-slate-400">
+              針對行銷、銷售、HR與營運部門設計 Prompt 工程與數據工具實戰班，打造 AI 原生團隊。
+            </p>
+          </div>
+          <button onclick="openSolutionModal(3)" class="mt-6 flex items-center gap-1.5 text-xs font-bold text-ocean hover:underline">
+            <span>檢視導入細節與架構</span> →
+          </button>
+        </article>
+
+        <!-- Card 5 -->
+        <article class="group relative flex flex-col justify-between rounded-2xl border border-slate-700 bg-slate-900 p-6 transition-all hover:-translate-y-1 hover:border-ocean/60 hover:shadow-xl">
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-signal">05 / 成長行銷</span>
+              <span class="rounded bg-ocean/20 px-2 py-0.5 text-xs text-ocean">Growth Funnel</span>
+            </div>
+            <h3 class="mt-4 text-xl font-bold text-white group-hover:text-ocean transition-colors">行銷自動化與數據漏斗</h3>
+            <p class="mt-3 text-xs leading-relaxed text-slate-400">
+              整合內容行銷、名單自動培育、高潛力顧客篩選與 ROI 追蹤，建立可持續複製的成長曲線。
+            </p>
+          </div>
+          <button onclick="openSolutionModal(4)" class="mt-6 flex items-center gap-1.5 text-xs font-bold text-ocean hover:underline">
+            <span>檢視導入細節與架構</span> →
+          </button>
+        </article>
+
+        <!-- Card 6 -->
+        <article class="group relative flex flex-col justify-between rounded-2xl border border-slate-700 bg-slate-900 p-6 transition-all hover:-translate-y-1 hover:border-ocean/60 hover:shadow-xl">
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-signal">06 / 導入策略</span>
+              <span class="rounded bg-ocean/20 px-2 py-0.5 text-xs text-ocean">0 to 1 AI Team</span>
+            </div>
+            <h3 class="mt-4 text-xl font-bold text-white group-hover:text-ocean transition-colors">0 到 1 AI 團隊建置藍圖</h3>
+            <p class="mt-3 text-xs leading-relaxed text-slate-400">
+              為企業量身釐清 AI 治理政策、人才選用評估、技術選型與專案優先順序地圖。
+            </p>
+          </div>
+          <button onclick="openSolutionModal(5)" class="mt-6 flex items-center gap-1.5 text-xs font-bold text-ocean hover:underline">
+            <span>檢視導入細節與架構</span> →
+          </button>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="calculator" class="mx-auto max-w-7xl px-6 py-24">
+    <div class="rounded-3xl border border-slate-200 bg-white p-8 md:p-12 shadow-md">
+      <div class="max-w-3xl">
+        <span class="text-xs font-bold tracking-widest text-insight uppercase">ROI CALCULATOR / 效益估算</span>
+        <h2 class="mt-2 text-3xl font-black text-ink md:text-4xl">企業 AI 導入效益與省時試算器</h2>
+        <p class="mt-2 text-sm text-slate-600">調整下方參數，即時試算貴團隊引進 AI 與自動化後，每年可節省的工時與人力成本效益。</p>
+      </div>
+
+      <div class="mt-10 grid gap-10 lg:grid-cols-2">
+        <!-- Controls -->
+        <div class="space-y-6">
+          <div>
+            <div class="flex justify-between text-sm font-bold text-ink">
+              <label for="team-size">團隊涉及重複作業人數：</label>
+              <span id="team-size-val" class="text-insight font-black">15 人</span>
+            </div>
+            <input id="team-size" type="range" min="3" max="200" value="15" class="mt-2 w-full accent-signal" oninput="updateCalculator()">
+          </div>
+
+          <div>
+            <div class="flex justify-between text-sm font-bold text-ink">
+              <label for="hours-per-week">每人每週處理文件/對帳/重複行政時間：</label>
+              <span id="hours-val" class="text-insight font-black">12 小時</span>
+            </div>
+            <input id="hours-per-week" type="range" min="2" max="30" value="12" class="mt-2 w-full accent-signal" oninput="updateCalculator()">
+          </div>
+
+          <div>
+            <div class="flex justify-between text-sm font-bold text-ink">
+              <label for="avg-salary">預估平均時薪 (NTD)：</label>
+              <span id="salary-val" class="text-insight font-black">450 元/時</span>
+            </div>
+            <input id="avg-salary" type="range" min="250" max="1200" step="50" value="450" class="mt-2 w-full accent-signal" oninput="updateCalculator()">
+          </div>
+
+          <div>
+            <label class="block text-sm font-bold text-ink mb-2">預計導入的核心模組：</label>
+            <div class="grid grid-cols-2 gap-2 text-xs">
+              <label class="flex items-center gap-2 rounded-lg border border-slate-200 p-3 cursor-pointer hover:bg-slate-50">
+                <input type="checkbox" id="mod-rag" checked onchange="updateCalculator()" class="accent-signal">
+                <span>RAG 私有知識庫</span>
+              </label>
+              <label class="flex items-center gap-2 rounded-lg border border-slate-200 p-3 cursor-pointer hover:bg-slate-50">
+                <input type="checkbox" id="mod-rpa" checked onchange="updateCalculator()" class="accent-signal">
+                <span>RPA 工作流自動化</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Calculated Results Card -->
+        <div class="flex flex-col justify-between rounded-2xl bg-ink p-8 text-white">
+          <div>
+            <p class="text-xs font-bold uppercase tracking-wider text-ocean">PROPOSED IMPACT ESTIMATE</p>
+            <h3 class="mt-1 text-xl font-bold">預估效益簡報</h3>
+
+            <div class="mt-8 space-y-6">
+              <div>
+                <p class="text-xs text-slate-400">每年可節省工時 (Hours/Year)</p>
+                <div class="flex items-baseline gap-2">
+                  <span id="result-hours" class="text-4xl font-black text-ocean">5,616</span>
+                  <span class="text-sm text-slate-300">小時/年</span>
+                </div>
+              </div>
+
+              <div>
+                <p class="text-xs text-slate-400">相當於釋放人力價值 (Cost Value)</p>
+                <div class="flex items-baseline gap-2">
+                  <span id="result-cost" class="text-4xl font-black text-signal">NT$ 2,527,200</span>
+                </div>
+              </div>
+
+              <div class="rounded-xl border border-white/10 bg-white/5 p-4 text-xs text-slate-300 leading-relaxed">
+                💡 <b>建議規劃：</b> 預估投入 2~3 個月建置私有知識庫與 RPA 流程，預計在第 4 個月起達成 60% 效率翻倍提升。
+              </div>
+            </div>
+          </div>
+
+          <a href="#contact" class="mt-8 block rounded-xl bg-signal py-3.5 text-center font-bold text-ink hover:bg-ocean transition-all">
+            預約試算結果諮詢與場景驗證 →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="assessment" class="bg-slate-100 py-24 border-y border-slate-200">
+    <div class="mx-auto max-w-4xl px-6">
+      <div class="text-center">
+        <span class="text-xs font-bold tracking-widest text-insight uppercase">FREE ASSESSMENT / 企業診斷</span>
+        <h2 class="mt-2 text-3xl font-black text-ink md:text-4xl">企業 AI 成熟度 1 分鐘快速檢測</h2>
+        <p class="mt-2 text-sm text-slate-600">請回答 4 個關鍵問題，系統將為您生成專屬的 AI 導入成熟度評級與建議。</p>
+      </div>
+
+      <!-- Quiz Form Container -->
+      <div id="quiz-container" class="mt-10 rounded-2xl bg-white p-8 shadow-sm border border-slate-200">
+        <!-- Step 1 -->
+        <div class="quiz-step space-y-4" id="step-1">
+          <div class="flex justify-between items-center text-xs font-bold text-slate-500">
+            <span>QUESTION 01 / 04</span>
+            <span>25% 完成</span>
+          </div>
+          <h3 class="text-lg font-bold text-ink">目前貴公司的數據與文件保存狀況為何？</h3>
+          <div class="space-y-3">
+            <button onclick="answerQuiz(1, 1)" class="w-full text-left rounded-xl border border-slate-200 p-4 text-sm hover:border-signal hover:bg-paper transition-all">
+              A. 散落於個人電腦或紙本，缺乏統一資料庫或雲端
+            </button>
+            <button onclick="answerQuiz(1, 2)" class="w-full text-left rounded-xl border border-slate-200 p-4 text-sm hover:border-signal hover:bg-paper transition-all">
+              B. 有雲端硬碟 (Google Drive / NAS)，但缺乏結構化分類與標籤
+            </button>
+            <button onclick="answerQuiz(1, 3)" class="w-full text-left rounded-xl border border-slate-200 p-4 text-sm hover:border-signal hover:bg-paper transition-all">
+              C. 已有系統化數據庫（如 CRM/ERP/POS），資料品質良好
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="quiz-step hidden space-y-4" id="step-2">
+          <div class="flex justify-between items-center text-xs font-bold text-slate-500">
+            <span>QUESTION 02 / 04</span>
+            <span>50% 完成</span>
+          </div>
+          <h3 class="text-lg font-bold text-ink">團隊成員目前使用 AI 工具（如 ChatGPT, Claude）的現況？</h3>
+          <div class="space-y-3">
+            <button onclick="answerQuiz(2, 1)" class="w-full text-left rounded-xl border border-slate-200 p-4 text-sm hover:border-signal hover:bg-paper transition-all">
+              A. 僅少數員工私下試用，公司無統一規範或付費帳號
+            </button>
+            <button onclick="answerQuiz(2, 2)" class="w-full text-left rounded-xl border border-slate-200 p-4 text-sm hover:border-signal hover:bg-paper transition-all">
+              B. 提供付費帳號，但大家各自摸索，沒有標準 Prompt 流程
+            </button>
+            <button onclick="answerQuiz(2, 3)" class="w-full text-left rounded-xl border border-slate-200 p-4 text-sm hover:border-signal hover:bg-paper transition-all">
+              C. 已建立內部專屬 Prompt 庫與 AI 使用規範 (AI Policy)
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="quiz-step hidden space-y-4" id="step-3">
+          <div class="flex justify-between items-center text-xs font-bold text-slate-500">
+            <span>QUESTION 03 / 04</span>
+            <span>75% 完成</span>
+          </div>
+          <h3 class="text-lg font-bold text-ink">組織目前最迫切想透過 AI 改善哪一類環節？</h3>
+          <div class="space-y-3">
+            <button onclick="answerQuiz(3, 1)" class="w-full text-left rounded-xl border border-slate-200 p-4 text-sm hover:border-signal hover:bg-paper transition-all">
+              A. 減少日常重複行政、報表對帳與文件搜尋時間
+            </button>
+            <button onclick="answerQuiz(3, 2)" class="w-full text-left rounded-xl border border-slate-200 p-4 text-sm hover:border-signal hover:bg-paper transition-all">
+              B. 提升行銷文案生成、顧客獲客與自動化銷售漏斗轉換
+            </button>
+            <button onclick="answerQuiz(3, 3)" class="w-full text-left rounded-xl border border-slate-200 p-4 text-sm hover:border-signal hover:bg-paper transition-all">
+              C. 建構精準預測模型（流失預測、銷量預估、風險控制）
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="quiz-step hidden space-y-4" id="step-4">
+          <div class="flex justify-between items-center text-xs font-bold text-slate-500">
+            <span>QUESTION 04 / 04</span>
+            <span>100% 完成</span>
+          </div>
+          <h3 class="text-lg font-bold text-ink">高層管理團隊對 AI 專案導入的預算與決心狀況？</h3>
+          <div class="space-y-3">
+            <button onclick="answerQuiz(4, 1)" class="w-full text-left rounded-xl border border-slate-200 p-4 text-sm hover:border-signal hover:bg-paper transition-all">
+              A. 先以小規模概念驗證 (PoC) 或員工培訓切入
+            </button>
+            <button onclick="answerQuiz(4, 2)" class="w-full text-left rounded-xl border border-slate-200 p-4 text-sm hover:border-signal hover:bg-paper transition-all">
+              B. 具備明確預算，準備採購專屬 API/系統並輔導關鍵部門
+            </button>
+            <button onclick="answerQuiz(4, 3)" class="w-full text-left rounded-xl border border-slate-200 p-4 text-sm hover:border-signal hover:bg-paper transition-all">
+              C. 升級為組織年度核心 KPI，全力建置全公司 AI 數據鏈
+            </button>
+          </div>
+        </div>
+
+        <!-- Quiz Result Section -->
+        <div id="quiz-result" class="hidden text-center py-6 space-y-6">
+          <div class="inline-flex h-16 w-16 items-center justify-center rounded-full bg-signal/20 text-2xl font-black text-signal">
+            ✓
+          </div>
+          <h3 id="result-title" class="text-2xl font-bold text-ink">評估結果加載中...</h3>
+          <p id="result-desc" class="text-sm leading-relaxed text-slate-600 max-w-lg mx-auto"></p>
+
+          <div class="pt-4">
+            <a href="#contact" onclick="attachQuizToContact()" class="inline-block rounded-full bg-signal px-8 py-3.5 font-bold text-ink hover:bg-ocean transition-all">
+              將診斷結果帶入聯絡表單並預約討論 →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work" class="mx-auto max-w-7xl px-6 py-24">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+      <div>
+        <span class="text-xs font-bold tracking-widest text-insight uppercase">SELECTED CASE STUDIES / 合作案例</span>
+        <h2 class="mt-2 text-3xl font-black text-ink md:text-4xl">把複雜的數據痛點，化為可衡量的成效</h2>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="flex flex-wrap gap-2 text-xs font-bold">
+        <button onclick="filterCases('all')" class="case-tab active-tab rounded-full bg-ink px-4 py-2 text-white">全部案例</button>
+        <button onclick="filterCases('finance')" class="case-tab rounded-full bg-slate-200 px-4 py-2 text-slate-700 hover:bg-slate-300">金融服務</button>
+        <button onclick="filterCases('tech')" class="case-tab rounded-full bg-slate-200 px-4 py-2 text-slate-700 hover:bg-slate-300">製造與化工</button>
+        <button onclick="filterCases('edu')" class="case-tab rounded-full bg-slate-200 px-4 py-2 text-slate-700 hover:bg-slate-300">教育與文教</button>
+      </div>
+    </div>
+
+    <!-- Case Cards Grid -->
+    <div class="mt-12 grid gap-6 md:grid-cols-3">
+      <!-- Case 1 -->
+      <article class="case-card finance group rounded-2xl bg-[#EAF5FF] p-8 border border-sky-100 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-sky-700">金融服務</span>
+            <span class="text-xs text-slate-500">專案內訓 + 策略諮詢</span>
+          </div>
+          <h3 class="mt-12 text-2xl font-black text-ink group-hover:text-sky-700 transition-colors">數據素養與全員 AI 應用賦能</h3>
+          <p class="mt-3 text-xs leading-relaxed text-slate-600">
+            協助數百位金融風控與理財顧問建立 Python 資料分析思維與生成式 AI 工具標準處方，加速日常決策流程。
+          </p>
+        </div>
+        <div class="mt-8 border-t border-sky-200/60 pt-4">
+          <div class="text-xs font-bold text-ink">關鍵成效：報表產出效率提升 3.5 倍</div>
+          <p class="mt-1 text-xs text-slate-500">指標：課程評分 4.9 / 5.0，課後實作率 92%</p>
+        </div>
+      </article>
+
+      <!-- Case 2 -->
+      <article class="case-card tech group rounded-2xl bg-[#EFF7DC] p-8 border border-lime-100 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-lime-800">製造與化工</span>
+            <span class="text-xs text-slate-500">資料架構 + 預測模型</span>
+          </div>
+          <h3 class="mt-12 text-2xl font-black text-ink group-hover:text-lime-800 transition-colors">營運數據鏈重構與銷量預測</h3>
+          <p class="mt-3 text-xs leading-relaxed text-slate-600">
+            整理原本分散於三套系統的營運庫存與訂單紀錄，建立動態機器學習預測模型，優化供應鏈採購時間點。
+          </p>
+        </div>
+        <div class="mt-8 border-t border-lime-200/60 pt-4">
+          <div class="text-xs font-bold text-ink">關鍵成效：庫存呆滯成本降低 28%</div>
+          <p class="mt-1 text-xs text-slate-500">指標：預測準確率提升至 89.4%</p>
+        </div>
+      </article>
+
+      <!-- Case 3 -->
+      <article class="case-card edu group rounded-2xl bg-[#F5EDFF] p-8 border border-purple-100 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-purple-800">教育與文教</span>
+            <span class="text-xs text-slate-500">AI 課程 + 自動化</span>
+          </div>
+          <h3 class="mt-12 text-2xl font-black text-ink group-hover:text-purple-800 transition-colors">AI 實戰教學與自動化行銷漏斗</h3>
+          <p class="mt-3 text-xs leading-relaxed text-slate-600">
+            設計從 Python 到 LLM 應用落地完整學習路徑，並為文教機構串接學員名單自動培育與 Chatbot 引導。
+          </p>
+        </div>
+        <div class="mt-8 border-t border-purple-200/60 pt-4">
+          <div class="text-xs font-bold text-ink">關鍵成效：招生名單轉換率提升 2.1x</div>
+          <p class="mt-1 text-xs text-slate-500">指標：線上課程累計超過萬名學員肯定</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="insights" class="mx-auto max-w-7xl px-6 py-24 border-t border-slate-200">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+      <div>
+        <span class="text-xs font-bold tracking-widest text-insight uppercase">INSIGHTS & ARTICLES / 技術部落格</span>
+        <h2 class="mt-2 text-3xl font-black text-ink md:text-4xl">把前沿技術思維，寫成可執行的方法</h2>
+      </div>
+
+      <!-- Article Search -->
+      <div class="relative w-full md:w-72">
+        <input id="blog-search" type="text" placeholder="搜尋文章關鍵字..." oninput="searchArticles()" class="w-full rounded-full border border-slate-300 bg-white px-4 py-2.5 text-xs focus:border-signal focus:outline-none">
+        <svg class="absolute right-3.5 top-3 h-4 w-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+      </div>
+    </div>
+
+    <!-- Article Cards Container -->
+    <div class="mt-12 grid gap-8 md:grid-cols-3">
+      <!-- Article 1 -->
+      <article class="article-card border-t-2 border-ink pt-6 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center gap-2 text-xs text-insight font-bold">
+            <span>AI 導入策略</span>
+            <span>•</span>
+            <span class="text-slate-400">5 分鐘閱讀</span>
+          </div>
+          <h3 class="mt-3 text-xl font-bold text-ink hover:text-signal transition-colors cursor-pointer" onclick="openArticleModal(0)">
+            企業導入生成式 AI 前，必須回答的三個關鍵問題
+          </h3>
+          <p class="mt-3 text-xs leading-relaxed text-slate-600">
+            許多公司購買了廣泛的 AI 訂閱，專案卻常常卡在概念驗證 (PoC)。本文從場景挑選、資料資產化到 ROI 衡量指標，剖析成功導入的路徑。
+          </p>
+        </div>
+        <button onclick="openArticleModal(0)" class="mt-6 flex items-center gap-1 text-xs font-bold text-ink hover:text-signal">
+          <span>閱讀全文</span> →
+        </button>
+      </article>
+
+      <!-- Article 2 -->
+      <article class="article-card border-t-2 border-ink pt-6 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center gap-2 text-xs text-insight font-bold">
+            <span>資料決策</span>
+            <span>•</span>
+            <span class="text-slate-400">7 分鐘閱讀</span>
+          </div>
+          <h3 class="mt-3 text-xl font-bold text-ink hover:text-signal transition-colors cursor-pointer" onclick="openArticleModal(1)">
+            有資料卻沒有洞察？重新整理你的商業決策架構
+          </h3>
+          <p class="mt-3 text-xs leading-relaxed text-slate-600">
+            「看了一堆 Dashboard，依然不知道明早該怎麼下決策？」重新定義你的數據指標庫，建立從 Problem 到 Actionable Insight 的分析地圖。
+          </p>
+        </div>
+        <button onclick="openArticleModal(1)" class="mt-6 flex items-center gap-1 text-xs font-bold text-ink hover:text-signal">
+          <span>閱讀全文</span> →
+        </button>
+      </article>
+
+      <!-- Article 3 -->
+      <article class="article-card border-t-2 border-ink pt-6 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center gap-2 text-xs text-insight font-bold">
+            <span>行銷科技 (MarTech)</span>
+            <span>•</span>
+            <span class="text-slate-400">6 分鐘閱讀</span>
+          </div>
+          <h3 class="mt-3 text-xl font-bold text-ink hover:text-signal transition-colors cursor-pointer" onclick="openArticleModal(2)">
+            AI 行銷自動化：不是工具堆疊，而是顧客旅程設計
+          </h3>
+          <p class="mt-3 text-xs leading-relaxed text-slate-600">
+            揭密如何結合內容自動生成、對話式 Chatbot 智慧過濾與數據追蹤，把無效名單轉換為持續帶來商機的高價值客戶。
+          </p>
+        </div>
+        <button onclick="openArticleModal(2)" class="mt-6 flex items-center gap-1 text-xs font-bold text-ink hover:text-signal">
+          <span>閱讀全文</span> →
+        </button>
+      </article>
+    </div>
+  </section>
+
+  <section id="portfolio" class="mx-auto max-w-7xl px-6 py-24 border-t border-slate-200">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+      <div>
+        <span class="text-xs font-bold tracking-widest text-insight uppercase">PORTFOLIO & PUBLICATIONS / 作品與著作展示</span>
+        <h2 class="mt-2 text-3xl font-black text-ink md:text-4xl">數據實戰圖書與專案精選</h2>
+        <p class="mt-2 text-sm text-slate-600">展現從理論架構落地至企業應用的專業著作與教學成果。</p>
+      </div>
+      <div class="inline-flex items-center gap-2 text-xs font-bold text-signal bg-signal/10 px-4 py-2 rounded-full border border-signal/30">
+        <span>✨ 最新專案出版與簡報成果展示</span>
+      </div>
+    </div>
+
+    <!-- Featured Portfolio Card Grid -->
+    <div class="mt-12 grid gap-8 lg:grid-cols-12 items-stretch">
+      <!-- Main Image Preview Card -->
+      <div class="lg:col-span-7 group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-4 md:p-6 shadow-lg transition-all hover:border-signal/50 hover:shadow-2xl">
+        <div class="relative overflow-hidden rounded-2xl bg-slate-900 aspect-[16/10] md:aspect-[16/9]">
+          <img 
+            src="https://lynnlin067-alt.github.io/vibe-coding-web/20250121_124241.jpg" 
+            alt="鍾皓軒作品集展示" 
+            onerror="this.onerror=null; this.src='https://placehold.co/1200x800/132B27/F5D68E?text=Portfolio+Image';"
+            class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          >
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex items-end p-6">
+            <span class="rounded-full bg-signal px-4 py-2 text-xs font-bold text-ink shadow-md">
+              🔍 點擊下方放大檢視
+            </span>
+          </div>
+        </div>
+
+        <div class="mt-4 flex items-center justify-between">
+          <span class="text-xs font-bold text-slate-500">實體著作 / 課程精選封面展示</span>
+          <button 
+            onclick="openImageModal('https://lynnlin067-alt.github.io/vibe-coding-web/20250121_124241.jpg')" 
+            class="inline-flex items-center gap-1.5 rounded-full bg-ink px-4 py-2 text-xs font-bold text-white transition-all hover:bg-signal hover:text-ink">
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+            全螢幕檢視圖片
+          </button>
+        </div>
+      </div>
+
+      <!-- Portfolio Details Info -->
+      <div class="lg:col-span-5 flex flex-col justify-between rounded-3xl bg-ink p-8 text-white shadow-xl">
+        <div>
+          <span class="text-xs font-bold text-ocean uppercase tracking-wider">SELECTED WORK & BOOKS</span>
+          <h3 class="mt-3 text-2xl font-black text-white">行銷資料科學與 AI 實戰專書作品</h3>
+          <p class="mt-4 text-xs leading-relaxed text-slate-300">
+            結合多年產業顧問經驗與實務專案驗證，將複雜的演算法與 Python 數據架構，梳理為企業與學生皆能輕鬆上手的專業著作與教材體系。
+          </p>
+
+          <div class="mt-6 space-y-4 border-t border-white/10 pt-6">
+            <div class="flex items-start gap-3">
+              <span class="grid h-7 w-7 flex-shrink-0 place-items-center rounded-lg bg-signal text-ink font-bold text-xs">01</span>
+              <div>
+                <h4 class="font-bold text-sm text-white">完整理論與實務結合</h4>
+                <p class="mt-0.5 text-xs text-slate-400">涵蓋 Python 資料分析、行銷資料科學、數據視覺化與 LLM 生成式應用。</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <span class="grid h-7 w-7 flex-shrink-0 place-items-center rounded-lg bg-ocean text-ink font-bold text-xs">02</span>
+              <div>
+                <h4 class="font-bold text-sm text-white">企業級案例實證</h4>
+                <p class="mt-0.5 text-xs text-slate-400">獲金融、製造、零售業界各大企業訓練指定採用書籍與教案。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 pt-4 border-t border-white/10 flex items-center justify-between">
+          <span class="text-xs font-medium text-slate-400">想了解更多專案細節？</span>
+          <a href="#contact" class="rounded-xl bg-signal px-5 py-2.5 text-xs font-bold text-ink transition-all hover:bg-ocean">
+            預約專案諮詢 →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="architecture" class="bg-slate-100 py-24 border-t border-slate-200">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="max-w-2xl">
+        <span class="text-xs font-bold tracking-widest text-insight uppercase">SITE MAP / 網站架構</span>
+        <h2 class="mt-2 text-3xl font-black text-ink">個人品牌與顧問架構地圖</h2>
+        <p class="mt-2 text-sm text-slate-600">快速了解本站之架構與資訊導引路徑。</p>
+      </div>
+
+      <div class="mt-8 max-w-3xl rounded-2xl bg-white p-8 shadow-sm border border-slate-200">
+        <div class="flex items-center gap-2 font-bold text-ink text-base border-b border-slate-100 pb-4">
+          <span class="grid h-6 w-6 place-items-center rounded bg-signal text-ink text-xs font-black">ZH</span>
+          <span>鍾皓軒｜AI × 數據 × 成長策略顧問 (TMR)</span>
+        </div>
+
+        <ul class="tree mt-6 space-y-4 text-sm text-slate-700">
+          <li>
+            <a href="#home" class="font-bold text-ink hover:text-signal">首頁 (Home)</a>
+            <span class="ml-2 text-xs text-slate-500">— 核心品牌主張、顧問價值、行動邀請</span>
+          </li>
+          <li>
+            <a href="#about" class="font-bold text-ink hover:text-signal">關於我 (About)</a>
+            <span class="ml-2 text-xs text-slate-500">— 專業定位、實務經驗與合作機構</span>
+          </li>
+          <li>
+            <a href="#services" class="font-bold text-ink hover:text-signal">AI 解決方案 (Services)</a>
+            <span class="ml-2 text-xs text-slate-500">— 知識庫 (RAG)、RPA 自動化、預測模型、企業內訓</span>
+          </li>
+          <li>
+            <a href="#calculator" class="font-bold text-ink hover:text-signal">效益試算器 (ROI Estimator)</a>
+            <span class="ml-2 text-xs text-slate-500">— 工時節算與人力價值評估工具</span>
+          </li>
+          <li>
+            <a href="#assessment" class="font-bold text-ink hover:text-signal">AI 成熟度檢測 (Assessment)</a>
+            <span class="ml-2 text-xs text-slate-500">— 企業 AI 轉型成熟度線上快速診斷</span>
+          </li>
+          <li>
+            <a href="#work" class="font-bold text-ink hover:text-signal">實戰案例 (Selected Work)</a>
+            <span class="ml-2 text-xs text-slate-500">— 金融、製造、文教等跨產業落地實績</span>
+          </li>
+          <li>
+            <a href="#portfolio" class="font-bold text-ink hover:text-signal">作品展示 (Portfolio)</a>
+            <span class="ml-2 text-xs text-slate-500">— 專業著作、實體書籍與簡報成果展示</span>
+          </li>
+          <li>
+            <a href="#insights" class="font-bold text-ink hover:text-signal">觀點文章 (Insights)</a>
+            <span class="ml-2 text-xs text-slate-500">— 生成式 AI 導入、資料決策與行銷科技文章</span>
+          </li>
+          <li>
+            <a href="#contact" class="font-bold text-ink hover:text-signal">聯絡我 (Contact)</a>
+            <span class="ml-2 text-xs text-slate-500">— 專案預約、內訓需求與諮詢表單</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="bg-signal py-24 text-ink">
+    <div class="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-2 lg:items-start">
+      <div>
+        <span class="text-xs font-bold tracking-widest text-ink/70 uppercase">LET'S BUILD WHAT'S NEXT</span>
+        <h2 class="mt-3 text-4xl font-black leading-tight md:text-5xl">
+          準備讓 AI 與數據，<br>開始為貴公司創造實質獲利嗎？
+        </h2>
+        <p class="mt-6 text-base leading-relaxed text-ink/80">
+          無論是企業內部 AI 培訓、客製私有知識庫建置、營運數據分析專案或行銷成長設計，歡迎填寫下方需求，我將親自於 1-2 個工作天內與您聯繫。
+        </p>
+
+        <div class="mt-10 space-y-4">
+          <div class="flex items-center gap-3">
+            <span class="grid h-10 w-10 place-items-center rounded-xl bg-ink text-white font-bold text-sm">✉</span>
+            <div>
+              <p class="text-xs font-bold text-ink/70">電子郵件 / Contact Email</p>
+              <div class="flex items-center gap-2">
+                <span class="font-bold text-ink">service@marketingtechnologist.com.tw</span>
+                <button onclick="copyEmail()" class="rounded bg-ink/10 px-2 py-0.5 text-xs font-bold hover:bg-ink hover:text-white transition-colors">複製</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <span class="grid h-10 w-10 place-items-center rounded-xl bg-ink text-white font-bold text-sm">📍</span>
+            <div>
+              <p class="text-xs font-bold text-ink/70">服務地點 / Location</p>
+              <p class="font-bold text-ink">臺灣台北市 / 支援全台實體授課與線上諮詢</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form Container -->
+      <form id="contact-form" onsubmit="handleFormSubmit(event)" class="rounded-3xl bg-ink p-8 text-white shadow-2xl">
+        <h3 class="text-2xl font-bold text-white mb-6">發送專案或諮詢需求</h3>
+
+        <div class="space-y-4">
+          <div>
+            <label class="block text-xs font-bold text-slate-300 mb-1" for="user-name">您的姓名 / 稱呼 *</label>
+            <input type="text" id="user-name" required placeholder="例如：張經理 / Alex Lin" class="w-full rounded-xl border border-slate-700 bg-slate-900 px-4 py-3 text-sm text-white placeholder-slate-500 focus:border-ocean focus:outline-none">
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-300 mb-1" for="user-email">公司 Email *</label>
+            <input type="email" id="user-email" required placeholder="alex@yourcompany.com" class="w-full rounded-xl border border-slate-700 bg-slate-900 px-4 py-3 text-sm text-white placeholder-slate-500 focus:border-ocean focus:outline-none">
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-300 mb-1" for="user-service">預計諮詢的服務類別 *</label>
+            <select id="user-service" required class="w-full rounded-xl border border-slate-700 bg-slate-900 px-4 py-3 text-sm text-white focus:border-ocean focus:outline-none">
+              <option value="AI 企業教育訓練與工作坊">AI 企業教育訓練與工作坊</option>
+              <option value="Chatbot 與私有知識庫 (RAG) 建置">Chatbot 與私有知識庫 (RAG) 建置</option>
+              <option value="RPA 工作流程自動化">RPA 工作流程自動化</option>
+              <option value="數據分析與機器學習預測">數據分析與機器學習預測</option>
+              <option value="全方位 AI 顧問諮詢">全方位 AI 顧問諮詢</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-300 mb-1" for="user-msg">目前面對的挑戰與討論需求 *</label>
+            <textarea id="user-msg" required rows="4" placeholder="請簡述您的團隊現況、預計解決問題或希望上課的時間點..." class="w-full rounded-xl border border-slate-700 bg-slate-900 px-4 py-3 text-sm text-white placeholder-slate-500 focus:border-ocean focus:outline-none"></textarea>
+          </div>
+
+          <!-- Assessment Result Attachment Note -->
+          <div id="attached-assessment-note" class="hidden rounded-xl bg-white/10 p-3 text-xs text-ocean border border-ocean/30">
+            ✓ 已為您自動附帶 AI 成熟度檢測診斷報告
+          </div>
+        </div>
+
+        <button type="submit" class="mt-6 w-full rounded-xl bg-signal py-4 font-bold text-ink hover:bg-ocean transition-all shadow-lg hover:scale-[1.02]">
+          送出諮詢需求
+        </button>
+
+        <p class="mt-3 text-center text-xs text-slate-400">
+          🔒 我們承諾嚴格保護您的商業個資與私密數據，絕不出售或對外透露。
+        </p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="bg-inkDark border-t border-white/10 px-6 py-10 text-slate-400 text-xs">
+  <div class="mx-auto max-w-7xl flex flex-col md:flex-row items-center justify-between gap-4">
+    <div class="flex items-center gap-3">
+      <span class="grid h-8 w-8 place-items-center rounded bg-signal text-ink font-black text-sm">ZH</span>
+      <span class="text-slate-200 font-bold">鍾皓軒｜AI × 數據 × 成長策略顧問</span>
+    </div>
+
+    <p>© 2026 鍾皓軒 / 臺灣行銷研究有限公司 (TMR). All rights reserved.</p>
+
+    <div class="flex gap-6">
+      <a href="#home" class="hover:text-ocean transition-colors">回到頁首 ↑</a>
+    </div>
+  </div>
+</footer>
+
+<div id="solution-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm">
+  <div class="relative w-full max-w-2xl rounded-3xl border border-slate-700 bg-slate-900 p-8 text-white shadow-2xl">
+    <button onclick="closeSolutionModal()" class="absolute right-6 top-6 grid h-8 w-8 place-items-center rounded-full bg-white/10 text-slate-300 hover:bg-white/20 hover:text-white">✕</button>
+    <span id="modal-tag" class="text-xs font-bold text-signal">TAG</span>
+    <h3 id="modal-title" class="mt-2 text-2xl font-black text-white">TITLE</h3>
+    
+    <div class="mt-6 space-y-4 text-xs leading-relaxed text-slate-300">
+      <div>
+        <h4 class="font-bold text-ocean">🎯 解決的核心痛點</h4>
+        <p id="modal-pain" class="mt-1 text-slate-400">PAIN</p>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-ocean">⚙️ 技術與執行架構</h4>
+        <p id="modal-tech" class="mt-1 text-slate-400">TECH</p>
+      </div>
+
+      <div>
+        <h4 class="font-bold text-ocean">📈 預期交付成果</h4>
+        <p id="modal-deliver" class="mt-1 text-slate-400">DELIVERABLE</p>
+      </div>
+    </div>
+
+    <div class="mt-8 flex justify-end gap-3">
+      <button onclick="closeSolutionModal()" class="rounded-xl border border-slate-600 px-5 py-2.5 text-xs font-bold text-slate-300 hover:bg-white/5">關閉</button>
+      <a href="#contact" onclick="closeSolutionModal()" class="rounded-xl bg-signal px-5 py-2.5 text-xs font-bold text-ink hover:bg-ocean">洽詢此方案 →</a>
+    </div>
+  </div>
+</div>
+
+<div id="article-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm">
+  <div class="relative w-full max-w-3xl max-h-[85vh] overflow-y-auto rounded-3xl border border-slate-200 bg-white p-8 text-ink shadow-2xl">
+    <button onclick="closeArticleModal()" class="absolute right-6 top-6 grid h-8 w-8 place-items-center rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200">✕</button>
+    
+    <span id="art-tag" class="text-xs font-bold text-insight">TAG</span>
+    <h3 id="art-title" class="mt-2 text-2xl font-black text-ink">TITLE</h3>
+    <div class="mt-2 text-xs text-slate-400">作者：鍾皓軒 Oliver · 臺灣行銷研究 (TMR) 創辦人</div>
+
+    <div id="art-content" class="mt-6 space-y-4 text-sm leading-relaxed text-slate-700 border-t border-slate-100 pt-6">
+      <!-- Article content loaded dynamically -->
+    </div>
+
+    <div class="mt-8 border-t border-slate-100 pt-4 flex justify-between items-center">
+      <span class="text-xs text-slate-400">感謝閱讀！若對文章主題有疑問，歡迎討論。</span>
+      <button onclick="closeArticleModal()" class="rounded-xl bg-ink px-6 py-2.5 text-xs font-bold text-white hover:bg-signal hover:text-ink">關閉視窗</button>
+    </div>
+  </div>
+</div>
+
+<!-- Image Lightbox Modal -->
+<div id="image-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/85 p-4 backdrop-blur-md" onclick="closeImageModal()">
+  <div class="relative max-w-5xl max-h-[90vh] overflow-hidden rounded-2xl bg-slate-900 p-2 shadow-2xl" onclick="event.stopPropagation()">
+    <button onclick="closeImageModal()" class="absolute right-4 top-4 z-10 grid h-10 w-10 place-items-center rounded-full bg-black/60 text-white hover:bg-signal hover:text-ink transition-all">✕</button>
+    <img id="modal-img" src="" alt="作品展示" class="max-h-[80vh] w-auto rounded-xl object-contain mx-auto">
+    <p class="mt-3 text-center text-xs font-bold text-slate-300 pb-1">鍾皓軒｜AI × 數據 × 成長策略顧問 作品與書籍展示</p>
+  </div>
+</div>
+
+<div id="toast" class="fixed bottom-6 right-6 z-50 hidden rounded-2xl bg-ink px-6 py-4 text-white shadow-2xl border border-signal/40 flex items-center gap-3">
+  <span class="text-xl text-signal">✓</span>
+  <span id="toast-msg" class="text-sm font-bold">已收到您的訊息！</span>
+</div>
+
+<script>
+// Solution Modal Data Definitions
+const solutionsData = [
+  {
+    tag: "01 / AI 知識庫 (RAG)",
+    title: "Chatbot 與私有企業知識庫",
+    pain: "公司內部無數 SOP、合約與產品文件散落，新手員工重複詢問，尋找資料浪費大量人力。",
+    tech: "採用 Vector Database 檢索增強生成 (RAG) 技術，搭配權限控管與權限隔離，資料嚴格封閉在私有雲/地端。",
+    deliver: "精準率達 90% 以上之 Chatbot 介面、系統串接檔、管理員後台與團隊使用指南。"
+  },
+  {
+    tag: "02 / 流程自動化",
+    title: "RPA + AI 工作流程自動化",
+    pain: "團隊每天花 2-3 小時跨系統複製貼上、人工對帳與整理跨部門 Excel 報表。",
+    tech: "結合 Python 腳本、RPA 機器人與 LLM 語意理解技術，實現「自動抓取-自動解析-自動輸出報表」。",
+    deliver: "全自動運行腳本、異常狀況 Telegram/Slack 即時告警通知機制、省時分析報告。"
+  },
+  {
+    tag: "03 / 數據預測",
+    title: "數據分析與預測模型",
+    pain: "有累積幾十萬筆交易紀錄，但只會拿來看歷史月報，無法預先防範顧客流失與精準行銷。",
+    tech: "運用 RFM 分群模型、Churn Prediction 機器學習模型與 GCP/Python 資料工程架構。",
+    deliver: "動態機器學習模型、高風險流失客戶名單自動警報、策略落地行動手冊。"
+  },
+  {
+    tag: "04 / 組織賦能",
+    title: "企業 AI 實戰教育訓練",
+    pain: "買了 AI 軟體授權，同仁卻只拿來改錯字或寫問候語，無法將 AI 融入核心工作業務。",
+    tech: "依據部門 (HR/行銷/業務/資安) 設計專屬 WorkShop 實戰工作坊，包含 Prompt 處方與案例演練。",
+    deliver: "實體/線上培訓課程、企業專屬 Prompt 手冊、課後實作作業評估報告。"
+  },
+  {
+    tag: "05 / 成長行銷",
+    title: "行銷自動化與成長漏斗",
+    pain: "獲客成本高昂，名單進入後缺乏系統化自動培育，導致潛在客戶冷卻流失。",
+    tech: "結合 AI 自動生成客製化內容、Chatbot 名單過濾與數據化 Funnel 轉化追蹤。",
+    deliver: "自動化行銷流程圖、高轉換率 Chatbot 腳本與數據歸因追蹤儀表板。"
+  },
+  {
+    tag: "06 / 導入策略",
+    title: "0 到 1 AI 團隊建置藍圖",
+    pain: "高層想做 AI，但不知道從哪個部門先開始、該買什麼工具，擔心資安與投資效益。",
+    tech: "高層 AI 策略評估工作坊、資安與政策審查、AI 專案優先順序地圖 (Matrix)。",
+    deliver: "企業 AI 轉型白皮書、年度 AI 導入 Roadmap、系統選型與人力規劃提案。"
+  }
+];
+
+// Solution Modal Handlers
+function openSolutionModal(index) {
+  const data = solutionsData[index];
+  document.getElementById('modal-tag').innerText = data.tag;
+  document.getElementById('modal-title').innerText = data.title;
+  document.getElementById('modal-pain').innerText = data.pain;
+  document.getElementById('modal-tech').innerText = data.tech;
+  document.getElementById('modal-deliver').innerText = data.deliver;
+  document.getElementById('solution-modal').classList.remove('hidden');
+}
+
+function closeSolutionModal() {
+  document.getElementById('solution-modal').classList.add('hidden');
+}
+
+// Articles Data & Modal Handlers
+const articlesData = [
+  {
+    tag: "AI 導入策略",
+    title: "企業導入生成式 AI 前，必須回答的三個關鍵問題",
+    content: `
+      <p><b>1. 我們要解決的是「效率問題」還是「創新問題」？</b><br>許多企業一開始就把目標設得太大，想靠 AI 重新發明商業模式。但經驗顯示，最容易見效並獲得團隊支持的，往往是「減少 50% 重複行政工時」這類明確的效率改善。</p>
+      <p><b>2. 企業內部的資料是否已經「資產化」？</b><br>AI 不是萬靈丹，它是「資料的放大器」。如果組織內部的文件全是紙本、掃描檔 PDFs 或是沒有分類的雜亂硬碟，那麼 AI 在回答時就會經常出現幻覺。導入 AI 前，先整理資料資產是不可或缺的功課。</p>
+      <p><b>3. 如何衡量這個 AI 專案的 ROI？</b><br>不要只用「同仁覺得好不好用」作為指標。明確量化省下的工時、客戶滿意度提升率、或是名單響應時間的縮短，才能為專案爭取持續預算。</p>
+    `
+  },
+  {
+    tag: "資料決策",
+    title: "有資料卻沒有洞察？重新整理你的商業決策架構",
+    content: `
+      <p>許多企業管理層常抱怨：「我們開會看了一幾十頁的 Looker Studio 或 Tableau Dashboard，但大家最後還是靠直覺拍板決定。」</p>
+      <p>這個問題的根本原因在於<b>「指標（Metric）」與「行動（Action）」斷連</b>。</p>
+      <p><b>如何改善？建立 Decision Tree：</b><br>
+      不要只列出「本月銷售額下降 10%」，而是要在 Dashboard 旁邊直接設計分支條件：「若銷量下降係因 A 產品退貨率異常，則行動為召開品管會議；若係因轉換率下滑，則行動為調整廣告投放 Target。」讓數據直接對應到下一步行動，數據才能真正轉化為商業價值。</p>
+    `
+  },
+  {
+    tag: "行銷科技 (MarTech)",
+    title: "AI 行銷自動化：不是工具堆疊，而是顧客旅程設計",
+    content: `
+      <p>市面上 MarTech 工具百百種，從 CDP、CRM 到自動發信機器人。但多數企業犯的錯是「買了一堆工具，卻沒有畫出清楚的 Customer Journey」。</p>
+      <p><b>AI 在自動化漏斗中的 3 個關鍵卡位點：</b></p>
+      <ul class="list-disc pl-5 space-y-2">
+        <li><b>名單過濾 (Lead Qualification)：</b> 當潛在客戶填表後，利用 AI 秒級分析其公司規模與意圖，即時給予 Lead Score。</li>
+        <li><b>客製化動態內容 (Personalized Nurturing)：</b> 依據客戶感興趣的領域，由 AI 自動生成最適合的案例導讀。</li>
+        <li><b>即時業務接棒警報：</b> 當客戶開啟核心報價單 3 次以上，AI 機器人立即 Slack 通知負責業務進行高勝率對話。</li>
+      </ul>
+    `
+  }
+];
+
+function openArticleModal(index) {
+  const art = articlesData[index];
+  document.getElementById('art-tag').innerText = art.tag;
+  document.getElementById('art-title').innerText = art.title;
+  document.getElementById('art-content').innerHTML = art.content;
+  document.getElementById('article-modal').classList.remove('hidden');
+}
+
+function closeArticleModal() {
+  document.getElementById('article-modal').classList.add('hidden');
+}
+
+// Image Lightbox Modal Handlers
+function openImageModal(imgSrc) {
+  document.getElementById('modal-img').src = imgSrc;
+  document.getElementById('image-modal').classList.remove('hidden');
+}
+
+function closeImageModal() {
+  document.getElementById('image-modal').classList.add('hidden');
+}
+
+function updateCalculator() {
+  const teamSize = parseInt(document.getElementById('team-size').value);
+  const hours = parseInt(document.getElementById('hours-per-week').value);
+  const salary = parseInt(document.getElementById('avg-salary').value);
+  
+  document.getElementById('team-size-val').innerText = teamSize + ' 人';
+  document.getElementById('hours-val').innerText = hours + ' 小時';
+  document.getElementById('salary-val').innerText = salary + ' 元/時';
+
+  // Calculate annual savings assuming 52 weeks and 60% efficiency improvement via AI
+  const totalWeeklyHours = teamSize * hours;
+  const annualSavedHours = Math.round(totalWeeklyHours * 52 * 0.6);
+  const annualSavedCost = annualSavedHours * salary;
+
+  document.getElementById('result-hours').innerText = annualSavedHours.toLocaleString();
+  document.getElementById('result-cost').innerText = 'NT$ ' + annualSavedCost.toLocaleString();
+}
+
+let quizScores = {};
+
+function answerQuiz(step, score) {
+  quizScores[step] = score;
+  document.getElementById(`step-${step}`).classList.add('hidden');
+
+  if (step < 4) {
+    document.getElementById(`step-${step + 1}`).classList.remove('hidden');
+  } else {
+    // Show results
+    document.getElementById('quiz-result').classList.remove('hidden');
+    calculateQuizResult();
+  }
+}
+
+function calculateQuizResult() {
+  const total = (quizScores[1] || 1) + (quizScores[2] || 1) + (quizScores[3] || 1) + (quizScores[4] || 1);
+  const titleEl = document.getElementById('result-title');
+  const descEl = document.getElementById('result-desc');
+
+  if (total <= 6) {
+    titleEl.innerText = "成熟度階段：AI 摸索萌芽期 (Seed Stage)";
+    descEl.innerText = "貴團隊具備導入 AI 的極大潛力！建議優先從「員工全員 AI 培訓」與「資料雲端整理」切入，先以低成本工具建立數據習慣。";
+  } else if (total <= 9) {
+    titleEl.innerText = "成熟度階段：AI 局部轉型期 (Growth Stage)";
+    descEl.innerText = "團隊已具備基礎 AI 經驗！最適合引進「RAG 私有知識庫」與「高頻率流程 RPA 自動化」，能快速看見大幅工時下降成效。";
+  } else {
+    titleEl.innerText = "成熟度階段：AI 原生領航者 (Leader Stage)";
+    descEl.innerText = "貴公司具備非常優異的數據體質！建議直接著手「高階機器學習預測模型」與「0 到 1 AI 專屬團隊與治理體系」建置。";
+  }
+}
+
+function attachQuizToContact() {
+  const titleText = document.getElementById('result-title').innerText;
+  const msgInput = document.getElementById('user-msg');
+  msgInput.value = `[AI 診斷結果] ${titleText}\n\n希望針對診斷結果進一步討論適合的導入計畫：`;
+  document.getElementById('attached-assessment-note').classList.remove('hidden');
+}
+
+function filterCases(category) {
+  // Update Tab Styling
+  const tabs = document.querySelectorAll('.case-tab');
+  tabs.forEach(tab => {
+    tab.classList.remove('bg-ink', 'text-white');
+    tab.classList.add('bg-slate-200', 'text-slate-700');
+  });
+  event.target.classList.remove('bg-slate-200', 'text-slate-700');
+  event.target.classList.add('bg-ink', 'text-white');
+
+  // Filter Cards
+  const cards = document.querySelectorAll('.case-card');
+  cards.forEach(card => {
+    if (category === 'all' || card.classList.contains(category)) {
+      card.classList.remove('hidden');
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+}
+
+// Article Search function
+function searchArticles() {
+  const query = document.getElementById('blog-search').value.toLowerCase();
+  const cards = document.querySelectorAll('.article-card');
+  cards.forEach(card => {
+    const text = card.innerText.toLowerCase();
+    if (text.includes(query)) {
+      card.classList.remove('hidden');
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+}
+
+// Mobile Menu Toggle
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobile-menu');
+  menu.classList.toggle('hidden');
+}
+document.getElementById('mobile-menu-btn').addEventListener('click', toggleMobileMenu);
+
+// Copy Email function
+function copyEmail() {
+  const emailText = 'service@marketingtechnologist.com.tw';
+  const dummy = document.createElement('textarea');
+  document.body.appendChild(dummy);
+  dummy.value = emailText;
+  dummy.select();
+  document.execCommand('copy');
+  document.body.removeChild(dummy);
+  showToast('Email 已成功複製至剪貼簿！');
+}
+
+// Toast notification helper
+function showToast(message) {
+  const toast = document.getElementById('toast');
+  document.getElementById('toast-msg').innerText = message;
+  toast.classList.remove('hidden');
+  toast.classList.add('toast-anim');
+  setTimeout(() => {
+    toast.classList.add('hidden');
+  }, 3500);
+}
+
+// Form Submission Handler
+function handleFormSubmit(e) {
+  e.preventDefault();
+  const name = document.getElementById('user-name').value;
+  showToast(`感謝 ${name}！已收到您的需求，將盡快與您聯繫。`);
+  document.getElementById('contact-form').reset();
+  document.getElementById('attached-assessment-note').classList.add('hidden');
+}
+
+// Initialize calculator on page load
+window.onload = function() {
+  updateCalculator();
+};
+</script>
+</body>
+</html>
